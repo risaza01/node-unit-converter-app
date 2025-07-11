@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ricardo Isaza" />
+    <meta
+      name="description"
+      content="Esta página web permite convertir entre diferentes unidades de medida de longitud."
+    />
+    <title>Calcular Longitud</title>
+  </head>
+  <body>
+    <header>
+      <h1>Unidades de Conversión</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/length">Longitud</a></li>
+        <li><a href="/weight">Peso</a></li>
+        <li><a href="/temperature">Temperatura</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <form action="https://httpbin.org/post" method="post">
+        <p>
+          <label for="length">Ingrese la longitud a convertir</label>
+          <input
+            type="text"
+            id="id"
+            name="length"
+            autofocus
+            autocomplete="on"
+          />
+        </p>
+        <p>
+          <label for="input-unit">Unidad de entrada</label>
+          <select name="inputUnit" id="input-unit">
+            <option value="mm">Milímetro</option>
+            <option value="cm">Centímetro</option>
+            <option value="m">Metro</option>
+            <option value="km">Kilómetro</option>
+            <option value="in">Pulgada</option>
+            <option value="ft">Pie</option>
+            <option value="yd">Yarda</option>
+            <option value="mi">Milla</option>
+          </select>
+        </p>
+        <p>
+          <label for="output-unit">Unidad de salida</label>
+          <select name="outputUnit" id="output-unit">
+            <option value="mm">Milímetro</option>
+            <option value="cm">Centímetro</option>
+            <option value="m">Metro</option>
+            <option value="km">Kilómetro</option>
+            <option value="in">Pulgada</option>
+            <option value="ft">Pie</option>
+            <option value="yd">Yarda</option>
+            <option value="mi">Milla</option>
+          </select>
+        </p>
+        <button type="submit">Convertir</button>
+      </form>
+    </main>
+  </body>
+</html>
