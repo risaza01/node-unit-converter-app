@@ -1,8 +1,10 @@
-const lengthMain = document.getElementById("length-main") as HTMLElement;
-const weightMain = document.getElementById("weight-main") as HTMLElement;
+const main = document.querySelector("main") as HTMLElement;
 
 const lengthForm = document.getElementById("length-form") as HTMLFormElement;
 const weightForm = document.getElementById("weight-form") as HTMLFormElement;
+const temperatureForm = document.getElementById(
+  "temperature-form"
+) as HTMLFormElement;
 
 // Interfaces
 interface Endpoint {
@@ -48,7 +50,7 @@ lengthForm?.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     lengthForm.remove();
-    lengthMain.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
+    main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
       <p><a href="http://localhost:9090/length" class="reset-link">Resetear</a><p>
       `;
   } catch (err) {
@@ -85,8 +87,43 @@ weightForm?.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     weightForm.remove();
-    weightMain.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
+    main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
       <p><a href="http://localhost:9090/weight" class="reset-link">Resetear</a><p>
+      `;
+  } catch (err) {
+    console.error("error:", (err as Error).message);
+  }
+});
+
+// Evento al hacer submit en el formulario de temperatura
+temperatureForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData: ConvertData = {
+    measure: parseFloat(temperatureForm.temperatureMeasure.value),
+    inputUnit: temperatureForm.inputUnit.value,
+    outputUnit: temperatureForm.outputUnit.value,
+  };
+
+  if (!formData.measure) return alert("La temperatura ingresada no es válida");
+  if (formData.inputUnit === formData.outputUnit)
+    return alert("La unidades de temperatura no pueden ser iguales");
+
+  try {
+    const response = await fetch(endpoints["temperature"], {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok)
+      throw new Error(`Error en la solicitud: ${response.status}`);
+
+    const data = await response.json();
+
+    temperatureForm.remove();
+    main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
+      <p><a href="http://localhost:9090/temperature" class="reset-link">Resetear</a><p>
       `;
   } catch (err) {
     console.error("error:", (err as Error).message);

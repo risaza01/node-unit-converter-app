@@ -2,7 +2,7 @@
 const http = require("node:http");
 const path = require("node:path");
 const fs = require("node:fs/promises");
-const { convertLength, convertWeight } = require("../utils/functions");
+const { convertLength, convertWeight, convertTemperature, } = require("../utils/functions");
 // Array de tipo FilePath para guardar las rutas de los archivos
 const filePaths = {
     "length.html": path.join(__dirname, "../../public/length.html"),
@@ -31,6 +31,22 @@ server.on("request", async (req, res) => {
     }
     else if (req.url === "/weight" && req.method === "GET") {
         const fileHandle = await fs.open(filePaths["weight.html"], "r");
+        const readStream = fileHandle.createReadStream();
+        res.writeHead(200, { "content-type": "text/html" });
+        readStream.on("data", (chunk) => {
+            if (!res.write(chunk))
+                readStream.pause();
+        });
+        res.on("drain", () => {
+            readStream.resume();
+        });
+        readStream.on("end", async () => {
+            res.end();
+            await fileHandle.close();
+        });
+    }
+    else if (req.url === "/temperature" && req.method === "GET") {
+        const fileHandle = await fs.open(filePaths["temperature.html"], "r");
         const readStream = fileHandle.createReadStream();
         res.writeHead(200, { "content-type": "text/html" });
         readStream.on("data", (chunk) => {
@@ -97,6 +113,18 @@ server.on("request", async (req, res) => {
         req.on("end", () => {
             const formData = JSON.parse(body);
             const result = convertWeight(formData.measure, formData.inputUnit, formData.outputUnit);
+            res.writeHead(200, { "content-type": "application/json" });
+            res.end(JSON.stringify({ result }));
+        });
+    }
+    else if (req.url === "/api/temperature" && req.method === "POST") {
+        let body = "";
+        req.on("data", (chunk) => {
+            body += chunk.toString("utf8");
+        });
+        req.on("end", () => {
+            const formData = JSON.parse(body);
+            const result = convertTemperature(formData.measure, formData.inputUnit, formData.outputUnit);
             res.writeHead(200, { "content-type": "application/json" });
             res.end(JSON.stringify({ result }));
         });
