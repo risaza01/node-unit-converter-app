@@ -1,0 +1,104 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Patrick Hand', sans-serif;
+  background: #f9f9f9;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Header */
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Nav */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+nav a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #000;
+  padding-bottom: 0.2rem;
+  position: relative;
+}
+nav a.active,
+nav a:hover {
+  /* línea inferior tipo “hand-drawn” */
+  box-shadow: inset 0 -4px 0 #3498db;
+}
+
+/* Contenedor del panel */
+main {
+  width: 100%;
+  max-width: 400px;
+  border: 3px solid #000;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #fff;
+}
+
+/* Formulario */
+#length-form p {
+  margin-bottom: 1rem;
+}
+#length-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+}
+#length-form input[type="text"],
+#length-form select {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 3px solid #000;
+  border-radius: 8px;
+  outline: none;
+}
+#length-form input:focus,
+#length-form select:focus {
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/* Botones */
+button,
+.reset-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border: 3px solid #000;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  transition: background 0.2s;
+}
+button:hover,
+.reset-link:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Resultado */
+.result {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}

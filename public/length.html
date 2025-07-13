@@ -9,6 +9,8 @@
       content="Esta página web permite convertir entre diferentes unidades de medida de longitud."
     />
     <title>Calcular Longitud</title>
+    <link rel="stylesheet" href="/main.css" type="text/css" />
+    <script src="/index.js" defer></script>
   </head>
   <body>
     <header>
@@ -17,20 +19,20 @@
 
     <nav>
       <ul>
-        <li><a href="/length">Longitud</a></li>
+        <li><a href="/length" class="active">Longitud</a></li>
         <li><a href="/weight">Peso</a></li>
         <li><a href="/temperature">Temperatura</a></li>
       </ul>
     </nav>
 
-    <main>
-      <form action="https://httpbin.org/post" method="post">
+    <main id="length-main">
+      <form id="length-form">
         <p>
-          <label for="length">Ingrese la longitud a convertir</label>
+          <label for="length-measure">Ingrese la longitud a convertir</label>
           <input
             type="text"
-            id="id"
-            name="length"
+            id="length-measure"
+            name="lengthMeasure"
             autofocus
             autocomplete="on"
           />
@@ -38,27 +40,27 @@
         <p>
           <label for="input-unit">Unidad de entrada</label>
           <select name="inputUnit" id="input-unit">
-            <option value="mm">Milímetro</option>
-            <option value="cm">Centímetro</option>
-            <option value="m">Metro</option>
-            <option value="km">Kilómetro</option>
-            <option value="in">Pulgada</option>
-            <option value="ft">Pie</option>
-            <option value="yd">Yarda</option>
-            <option value="mi">Milla</option>
+            <option value="mm">Milímetro (mm)</option>
+            <option value="cm">Centímetro (cm)</option>
+            <option value="m">Metro (m)</option>
+            <option value="km">Kilómetro (km)</option>
+            <option value="in">Pulgada (in)</option>
+            <option value="ft">Pie (ft)</option>
+            <option value="yd">Yarda (yd)</option>
+            <option value="mi">Milla (mi)</option>
           </select>
         </p>
         <p>
           <label for="output-unit">Unidad de salida</label>
           <select name="outputUnit" id="output-unit">
-            <option value="mm">Milímetro</option>
-            <option value="cm">Centímetro</option>
-            <option value="m">Metro</option>
-            <option value="km">Kilómetro</option>
-            <option value="in">Pulgada</option>
-            <option value="ft">Pie</option>
-            <option value="yd">Yarda</option>
-            <option value="mi">Milla</option>
+            <option value="mm">Milímetro (mm)</option>
+            <option value="cm" selected>Centímetro (cm)</option>
+            <option value="m">Metro (m)</option>
+            <option value="km">Kilómetro (km)</option>
+            <option value="in">Pulgada (in)</option>
+            <option value="ft">Pie (ft)</option>
+            <option value="yd">Yarda (yd)</option>
+            <option value="mi">Milla (mi)</option>
           </select>
         </p>
         <button type="submit">Convertir</button>
