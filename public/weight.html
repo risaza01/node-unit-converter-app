@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewprt" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ricardo Isaza" />
+    <meta
+      name="description"
+      content="Esta página web permite convertir entre
+    diferentes unidades de medida de peso."
+    />
+    <title>Convertir Peso</title>
+    <link rel="stylesheet" href="/main.css" type="text/css" />
+    <script src="/index.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Unidades de Conversión</h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="/length">Longitud</a></li>
+        <li><a href="/weight">Peso</a></li>
+        <li><a href="/temperature">Temperatura</a></li>
+      </ul>
+    </nav>
+
+    <main id="weight-main">
+      <form id="weight-form">
+        <p>
+          <label for="weight-measure">Ingrese el peso a convertir</label>
+          <input
+            type="text"
+            id="weight-measure"
+            name="weightMeasure"
+            autofocus
+          />
+        </p>
+        <p>
+          <label for="input-unit">Unidad de entrada</label>
+          <select name="inputUnit" id="input-unit">
+            <option value="mg">Miligramo (mg)</option>
+            <option value="g">Gramo (g)</option>
+            <option value="kg">Kilogramo (kg)</option>
+            <option value="oz">Onza (oz)</option>
+            <option value="lb">Libra (lb)</option>
+          </select>
+        </p>
+        <p>
+          <label for="output-unit">Unidad de salida</label>
+          <select name="outputUnit" id="output-unit">
+            <option value="mg">Miligramo (mg)</option>
+            <option value="g" selected>Gramo (g)</option>
+            <option value="kg">Kilogramo (kg)</option>
+            <option value="oz">Onza (oz)</option>
+            <option value="lb">Libra (lb)</option>
+          </select>
+        </p>
+        <button type="submit">Convertir</button>
+      </form>
+    </main>
+  </body>
+</html>

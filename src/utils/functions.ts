@@ -18,3 +18,20 @@ export function convertLength(
   const result: number = measureInMeters / toMeters[outputUnit];
   return result;
 }
+export function convertWeight(
+  measure: number,
+  inputUnit: string,
+  outputUnit: string
+): number {
+  const toGrams: Record<string, number> = {
+    mg: 0.001,
+    g: 1,
+    kg: 1000,
+    oz: 28.3495,
+    lb: 453.592,
+  };
+
+  const measureInGrams: number = measure * toGrams[inputUnit];
+  const result: number = measureInGrams / toGrams[outputUnit];
+  return result;
+}
