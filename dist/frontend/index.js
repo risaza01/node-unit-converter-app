@@ -1,7 +1,4 @@
 "use strict";
-//const lengthMain = document.getElementById("length-main") as HTMLElement;
-//const weightMain = document.getElementById("weight-main") as HTMLElement;
-//const temperatureMain = document.getElementById("temperature-main") as HTMLElement;
 const main = document.querySelector("main");
 const lengthForm = document.getElementById("length-form");
 const weightForm = document.getElementById("weight-form");
