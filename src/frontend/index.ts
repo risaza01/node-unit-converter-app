@@ -6,6 +6,8 @@ const temperatureForm = document.getElementById(
   "temperature-form"
 ) as HTMLFormElement;
 
+const regex = /^-?\d+(\.\d+)?$/;
+
 // Interfaces
 interface Endpoint {
   url: string;
@@ -27,13 +29,19 @@ const endpoints: Record<string, string> = {
 lengthForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const measureInString = lengthForm.lengthMeasure.value;
+  if (!measureInString.trim() || !regex.test(measureInString)) {
+    alert("La longitud ingresada no es válida");
+    lengthForm.lengthMeasure.value = "";
+    return;
+  }
+
   const formData: ConvertData = {
-    measure: parseFloat(lengthForm.lengthMeasure.value),
+    measure: parseFloat(measureInString),
     inputUnit: lengthForm.inputUnit.value,
     outputUnit: lengthForm.outputUnit.value,
   };
 
-  if (!formData.measure) return alert("La longitud ingresada no es válida");
   if (formData.inputUnit === formData.outputUnit)
     return alert("La unidades de longitud no pueden ser iguales");
 
@@ -51,7 +59,7 @@ lengthForm?.addEventListener("submit", async (e) => {
 
     lengthForm.remove();
     main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
-      <p><a href="http://localhost:9090/length" class="reset-link">Resetear</a><p>
+      <p><a href="/length" class="reset-link">Resetear</a><p>
       `;
   } catch (err) {
     console.error("error:", (err as Error).message);
@@ -62,13 +70,19 @@ lengthForm?.addEventListener("submit", async (e) => {
 weightForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const measureInString = weightForm.weightMeasure.value;
+  if (!measureInString.trim() || !regex.test(measureInString)) {
+    alert("El peso ingresado no es válido");
+    weightForm.weightMeasure.value = "";
+    return;
+  }
+
   const formData: ConvertData = {
-    measure: parseFloat(weightForm.weightMeasure.value),
+    measure: parseFloat(measureInString),
     inputUnit: weightForm.inputUnit.value,
     outputUnit: weightForm.outputUnit.value,
   };
 
-  if (!formData.measure) return alert("El peso ingresado no es válido");
   if (formData.inputUnit === formData.outputUnit)
     return alert("La unidades de peso no pueden ser iguales");
 
@@ -88,7 +102,7 @@ weightForm?.addEventListener("submit", async (e) => {
 
     weightForm.remove();
     main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
-      <p><a href="http://localhost:9090/weight" class="reset-link">Resetear</a><p>
+      <p><a href="/weight" class="reset-link">Resetear</a><p>
       `;
   } catch (err) {
     console.error("error:", (err as Error).message);
@@ -99,13 +113,19 @@ weightForm?.addEventListener("submit", async (e) => {
 temperatureForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const measureInString = temperatureForm.temperatureMeasure.value;
+  if (!measureInString.trim() || !regex.test(measureInString)) {
+    alert("La temperatura ingresada no es válida");
+    temperatureForm.temperatureMeasure.value = "";
+    return;
+  }
+
   const formData: ConvertData = {
-    measure: parseFloat(temperatureForm.temperatureMeasure.value),
+    measure: parseFloat(measureInString),
     inputUnit: temperatureForm.inputUnit.value,
     outputUnit: temperatureForm.outputUnit.value,
   };
 
-  if (!formData.measure) return alert("La temperatura ingresada no es válida");
   if (formData.inputUnit === formData.outputUnit)
     return alert("La unidades de temperatura no pueden ser iguales");
 
@@ -123,7 +143,7 @@ temperatureForm?.addEventListener("submit", async (e) => {
 
     temperatureForm.remove();
     main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
-      <p><a href="http://localhost:9090/temperature" class="reset-link">Resetear</a><p>
+      <p><a href="/temperature" class="reset-link">Resetear</a><p>
       `;
   } catch (err) {
     console.error("error:", (err as Error).message);
