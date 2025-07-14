@@ -22,9 +22,9 @@ interface ConvertData {
 
 // Objeto de tipo Endpoint para guardar las URLs de las APIs
 const endpoints: Record<string, string> = {
-  length: "http://localhost:9090/api/length",
-  weight: "http://localhost:9090/api/weight",
-  temperature: "http://localhost:9090/api/temperature",
+  length: "https://unit-converter-app-udkd.onrender.com/api/length",
+  weight: "https://unit-converter-app-udkd.onrender.com/api/weight",
+  temperature: "https://unit-converter-app-udkd.onrender.com/api/temperature",
 };
 
 // Evento al hacer submit en el formulario de longitud
