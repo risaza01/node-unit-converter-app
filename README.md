@@ -15,9 +15,9 @@ Puedes acceder a la aplicación en: http://
 - Conversión de longitud.
 - Conversión de peso.
 - Conversión de temperatura.
-- Interfaz web minimalista y clara
-- Sin necesidad de base de datos
-- Arquitectura basada en formularios HTML y respuestas del servidor
+- Interfaz web minimalista y clara.
+- Sin necesidad de base de datos.
+- Arquitectura basada en formularios HTML y respuestas del servidor.
 
 ---
 
