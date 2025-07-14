@@ -24,6 +24,7 @@ const filePaths: Record<string, string> = {
   "main.css": path.join(__dirname, "../../public/style/main.css"),
 };
 
+const PORT = process.env.PORT || 9090;
 const server = http.createServer();
 
 server.on("request", async (req: any, res: any) => {
@@ -167,6 +168,6 @@ server.on("request", async (req: any, res: any) => {
   }
 });
 
-server.listen(9090, () => {
+server.listen(PORT, () => {
   console.log("Server listening on", server.address());
 });

@@ -12,6 +12,7 @@ const filePaths = {
     "index.js": path.join(__dirname, "../../dist/frontend/index.js"),
     "main.css": path.join(__dirname, "../../public/style/main.css"),
 };
+const PORT = process.env.PORT || 9090;
 const server = http.createServer();
 server.on("request", async (req, res) => {
     if (req.url === "/length" && req.method === "GET") {
@@ -135,6 +136,6 @@ server.on("request", async (req, res) => {
         res.end("404 Page Not Found");
     }
 });
-server.listen(9090, () => {
+server.listen(PORT, () => {
     console.log("Server listening on", server.address());
 });

@@ -2,9 +2,15 @@
   "name": "unit-converter-app",
   "version": "1.0.0",
   "description": "Aplicación web sencilla que permite convertir entre diferentes unidades de medida. Esta aplicación puede convertir unidades de longitud, peso, volumen, área, temperatura y más. El usuario puede introducir un valor y seleccionar las unidades de origen y destino de la conversión. La aplicación mostrará el valor convertido.",
+  "type": "commonjs",
   "main": "dist/backend/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "node dist/backend/index.js"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "repository": {
     "type": "git",
