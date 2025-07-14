@@ -1,8 +1,10 @@
+// Función para convertir la longitud
 export function convertLength(
   measure: number,
   inputUnit: string,
   outputUnit: string
 ): number {
+  // Objeto que contiene cuánto es 1 medida x en metros
   const toMeters: Record<string, number> = {
     mm: 0.001,
     cm: 0.01,
@@ -14,15 +16,18 @@ export function convertLength(
     mi: 1609.344,
   };
 
+  // Hacer la conversión en metros y luego pasarla a la unidad de longitud requerida
   const measureInMeters: number = measure * toMeters[inputUnit];
   const result: number = measureInMeters / toMeters[outputUnit];
   return result;
 }
+// Función para convertir el peso
 export function convertWeight(
   measure: number,
   inputUnit: string,
   outputUnit: string
 ): number {
+  // Objeto que contiene cuánto es 1 medida x en gramos
   const toGrams: Record<string, number> = {
     mg: 0.001,
     g: 1,
@@ -31,10 +36,12 @@ export function convertWeight(
     lb: 453.592,
   };
 
+  // Hacer la conversión en gramos y luego pasarla a la unidad de peso requerida
   const measureInGrams: number = measure * toGrams[inputUnit];
   const result: number = measureInGrams / toGrams[outputUnit];
   return result;
 }
+// Función para convertir la temperatura
 export function convertTemperature(
   measure: number,
   inputUnit: string,

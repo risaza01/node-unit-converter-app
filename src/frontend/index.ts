@@ -6,19 +6,21 @@ const temperatureForm = document.getElementById(
   "temperature-form"
 ) as HTMLFormElement;
 
+// Regex para validar que las medidas ingresadas solo sean número enteros o decimales
 const regex = /^-?\d+(\.\d+)?$/;
 
-// Interfaces
+// Interface para el objeto endpoint
 interface Endpoint {
   url: string;
 }
+// Interface para el objeto que contiene la info del formulario que se va a enviar en el body de la petición
 interface ConvertData {
   measure: number;
   inputUnit: string;
   outputUnit: string;
 }
 
-// Array de tipo Endpoint para guardar las URLs de las APIs
+// Objeto de tipo Endpoint para guardar las URLs de las APIs
 const endpoints: Record<string, string> = {
   length: "http://localhost:9090/api/length",
   weight: "http://localhost:9090/api/weight",
@@ -29,6 +31,7 @@ const endpoints: Record<string, string> = {
 lengthForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // Validar la medida ingresada con el regex creado
   const measureInString = lengthForm.lengthMeasure.value;
   if (!measureInString.trim() || !regex.test(measureInString)) {
     alert("La longitud ingresada no es válida");
@@ -36,12 +39,14 @@ lengthForm?.addEventListener("submit", async (e) => {
     return;
   }
 
+  // Objeto con la info del formulario
   const formData: ConvertData = {
     measure: parseFloat(measureInString),
     inputUnit: lengthForm.inputUnit.value,
     outputUnit: lengthForm.outputUnit.value,
   };
 
+  // Validar que las unidades de medida no sean iguales
   if (formData.inputUnit === formData.outputUnit)
     return alert("La unidades de longitud no pueden ser iguales");
 
@@ -57,6 +62,7 @@ lengthForm?.addEventListener("submit", async (e) => {
 
     const data = await response.json();
 
+    // Eliminar el formulario y agregar el resultado dentro de la etiqueta main
     lengthForm.remove();
     main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
       <p><a href="/length" class="reset-link">Resetear</a><p>
@@ -70,6 +76,7 @@ lengthForm?.addEventListener("submit", async (e) => {
 weightForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // Validar la medida ingresada con el regex creado
   const measureInString = weightForm.weightMeasure.value;
   if (!measureInString.trim() || !regex.test(measureInString)) {
     alert("El peso ingresado no es válido");
@@ -77,12 +84,14 @@ weightForm?.addEventListener("submit", async (e) => {
     return;
   }
 
+  // Objeto con la info del formulario
   const formData: ConvertData = {
     measure: parseFloat(measureInString),
     inputUnit: weightForm.inputUnit.value,
     outputUnit: weightForm.outputUnit.value,
   };
 
+  // Validar que las unidades de medida no sean iguales
   if (formData.inputUnit === formData.outputUnit)
     return alert("La unidades de peso no pueden ser iguales");
 
@@ -100,6 +109,7 @@ weightForm?.addEventListener("submit", async (e) => {
 
     const data = await response.json();
 
+    // Eliminar el formulario y agregar el resultado dentro de la etiqueta main
     weightForm.remove();
     main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
       <p><a href="/weight" class="reset-link">Resetear</a><p>
@@ -113,6 +123,7 @@ weightForm?.addEventListener("submit", async (e) => {
 temperatureForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // Validar la medida ingresada con el regex creado
   const measureInString = temperatureForm.temperatureMeasure.value;
   if (!measureInString.trim() || !regex.test(measureInString)) {
     alert("La temperatura ingresada no es válida");
@@ -120,12 +131,14 @@ temperatureForm?.addEventListener("submit", async (e) => {
     return;
   }
 
+  // Objeto con la info del formulario
   const formData: ConvertData = {
     measure: parseFloat(measureInString),
     inputUnit: temperatureForm.inputUnit.value,
     outputUnit: temperatureForm.outputUnit.value,
   };
 
+  // Validar que las unidades de medida no sean iguales
   if (formData.inputUnit === formData.outputUnit)
     return alert("La unidades de temperatura no pueden ser iguales");
 
@@ -141,6 +154,7 @@ temperatureForm?.addEventListener("submit", async (e) => {
 
     const data = await response.json();
 
+    // Eliminar el formulario y agregar el resultado dentro de la etiqueta main
     temperatureForm.remove();
     main.innerHTML = `<p class="result">${formData.measure} ${formData.inputUnit} = ${data.result} ${formData.outputUnit}</p>
       <p><a href="/temperature" class="reset-link">Resetear</a><p>

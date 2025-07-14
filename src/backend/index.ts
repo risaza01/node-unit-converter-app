@@ -1,20 +1,21 @@
 const http = require("node:http");
 const path = require("node:path");
 const fs = require("node:fs/promises");
+// Funciones necesarias para convertir los diferentes tipos de medidas
 const {
   convertLength,
   convertWeight,
   convertTemperature,
 } = require("../utils/functions");
 
-// Interfaces
+// Interface para el objeto que viene con la info del formulario
 interface ConvertData {
   measure: number;
   inputUnit: string;
   outputUnit: string;
 }
 
-// Array de tipo FilePath para guardar las rutas de los archivos
+// Objeto para guardar las rutas de los archivos locales
 const filePaths: Record<string, string> = {
   "length.html": path.join(__dirname, "../../public/length.html"),
   "weight.html": path.join(__dirname, "../../public/weight.html"),

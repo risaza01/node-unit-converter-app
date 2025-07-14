@@ -3,7 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertLength = convertLength;
 exports.convertWeight = convertWeight;
 exports.convertTemperature = convertTemperature;
+// Función para convertir la longitud
 function convertLength(measure, inputUnit, outputUnit) {
+    // Objeto que contiene cuánto es 1 medida x en metros
     const toMeters = {
         mm: 0.001,
         cm: 0.01,
@@ -14,11 +16,14 @@ function convertLength(measure, inputUnit, outputUnit) {
         yd: 0.9144,
         mi: 1609.344,
     };
+    // Hacer la conversión en metros y luego pasarla a la unidad de longitud requerida
     const measureInMeters = measure * toMeters[inputUnit];
     const result = measureInMeters / toMeters[outputUnit];
     return result;
 }
+// Función para convertir el peso
 function convertWeight(measure, inputUnit, outputUnit) {
+    // Objeto que contiene cuánto es 1 medida x en gramos
     const toGrams = {
         mg: 0.001,
         g: 1,
@@ -26,10 +31,12 @@ function convertWeight(measure, inputUnit, outputUnit) {
         oz: 28.3495,
         lb: 453.592,
     };
+    // Hacer la conversión en gramos y luego pasarla a la unidad de peso requerida
     const measureInGrams = measure * toGrams[inputUnit];
     const result = measureInGrams / toGrams[outputUnit];
     return result;
 }
+// Función para convertir la temperatura
 function convertTemperature(measure, inputUnit, outputUnit) {
     let result = 0;
     if (inputUnit === "°C" && outputUnit === "°F") {
