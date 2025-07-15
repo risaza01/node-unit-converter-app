@@ -6,13 +6,12 @@ const temperatureForm = document.getElementById(
   "temperature-form"
 ) as HTMLFormElement;
 
+// Hostname de la aplicaión
+const HOSTNAME = "unit-converter-app-udkd.onrender.com";
+
 // Regex para validar que las medidas ingresadas solo sean número enteros o decimales
 const regex = /^-?\d+(\.\d+)?$/;
 
-// Interface para el objeto endpoint
-interface Endpoint {
-  url: string;
-}
 // Interface para el objeto que contiene la info del formulario que se va a enviar en el body de la petición
 interface ConvertData {
   measure: number;
@@ -20,11 +19,11 @@ interface ConvertData {
   outputUnit: string;
 }
 
-// Objeto de tipo Endpoint para guardar las URLs de las APIs
+// Objeto para guardar la url de cada endpoint
 const endpoints: Record<string, string> = {
-  length: "https://unit-converter-app-udkd.onrender.com/api/length",
-  weight: "https://unit-converter-app-udkd.onrender.com/api/weight",
-  temperature: "https://unit-converter-app-udkd.onrender.com/api/temperature",
+  length: `https://${HOSTNAME}/api/length`,
+  weight: `https://${HOSTNAME}/api/weight`,
+  temperature: `https://${HOSTNAME}/api/temperature`,
 };
 
 // Evento al hacer submit en el formulario de longitud
